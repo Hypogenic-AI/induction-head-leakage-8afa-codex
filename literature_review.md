@@ -37,7 +37,7 @@ Do induction heads materially contribute to unintended copying or leakage in lan
 
 ## Screening Results
 
-Manual search was used because the local `paper-finder` service did not return usable results from `localhost:8000`. Ten papers were downloaded after title and abstract screening; five were read more closely via PDF chunking.
+Manual search was used because the local `paper-finder` service timed out against `localhost:8000` during this run. Ten papers were downloaded after title and abstract screening; four high-priority papers were re-read in detail via PDF chunking during validation (`2209.11895`, `2407.07011`, `2505.13514`, `2404.10859`).
 
 ## Key Papers
 

@@ -1,0 +1,16 @@
+\begin{table}[t]
+    \centering
+    \caption{Sensitivity runs over different high-scoring induction-like head subsets. The sign of the repeated-token bias effect changes across subsets, which is the main evidence against a monolithic leakage-circuit interpretation.}
+    \label{tab:sensitivity}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}lcccccccc@{}}
+        \toprule
+        Run & Heads & Copy acc.\ full & Copy acc.\ ablated & Bias full & Bias ablated & Entropy full & Entropy ablated & WikiText ppl ablated \\
+        \midrule
+        Sweep top-2 & \texttt{L5H5,L6H9} & 0.542 & 0.250 & 0.0371 & 0.0804 & 0.8701 & \textbf{0.8720} & \textbf{86.83} \\
+        Sweep top-3 & \texttt{L5H5,L6H9,L5H1} & 0.542 & 0.333 & 0.0371 & 0.0638 & 0.8701 & 0.7909 & 201.45 \\
+        Final run & \texttt{L5H5,L5H1} & \textbf{0.729} & \textbf{0.823} & 0.0496 & \textbf{0.0211} & 0.8602 & 0.8186 & 169.74 \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}

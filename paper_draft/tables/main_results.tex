@@ -1,0 +1,16 @@
+\begin{table}[t]
+    \centering
+    \caption{Main final-run results. Lower is better for repeated-token bias delta, KL to uniform, and WikiText perplexity. Higher is better for normalized entropy when the goal is a diffuse distribution. Best values are shown in \textbf{bold}.}
+    \label{tab:main-results}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}lccccc@{}}
+        \toprule
+        Condition & Copy accuracy & Bias delta & Normalized entropy & KL to uniform & WikiText perplexity \\
+        \midrule
+        Full model & 0.729 & 0.0496 & \textbf{0.860} & \textbf{0.152} & \textbf{89.9} \\
+        Induction ablation (\headpair) & \textbf{0.823} & \textbf{0.0211} & 0.819 & 0.227 & 169.7 \\
+        Random-head ablation (mean) & 0.723 & 0.0466 & 0.847 & 0.175 & 106.5 \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}

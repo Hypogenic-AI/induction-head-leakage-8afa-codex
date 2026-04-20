@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented a head-level causal study of whether induction-like heads are a large source of leakage in \gptsmall. Using TransformerLens, we identified high-scoring induction-like heads, ablated them on both copy and random-choice tasks, and compared the effect to random-head controls and a WikiText utility check.
+
+The core finding is not a clean mitigation result but a sensitivity result. Ablating \headpair reduces repeated-token bias on random-choice prompts, yet it also lowers entropy and sharply harms utility. Nearby high-scoring head subsets reverse the bias effect entirely. The strongest supported conclusion is therefore narrow: induction-like heads modulate repeated-token bias, but they are not a singular or stable source of leakage-like copying in this model.
+
+The next step is to test the same protocol where ``choose randomly'' is behaviorally meaningful, to replace hard zero ablation with softer descaling, and to pair these interventions with an extraction benchmark. That combination would provide a stronger answer about whether mechanistic copying circuits can be mitigated without collapsing useful language modeling behavior.

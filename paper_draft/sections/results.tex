@@ -1,0 +1,62 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Detected induction-like heads match canonical mid-layer structure}
+\label{sec:result-heads}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.78\linewidth]{figures/head_scores.png}
+    \caption{Induction-head detection scores across attention heads in \gptsmall. The highest-scoring heads are concentrated in mid layers, with \headpair emerging as the top two heads in the final run. This matches the qualitative pattern reported in prior induction-head studies.}
+    \label{fig:head-scores}
+\end{figure}
+
+The induction-head detector identifies a small number of clearly induction-like heads, with \headpair scoring 0.740 and 0.548 in the final run. This localization is important because it shows that the intervention targets a plausible induction circuit rather than an arbitrary collection of heads.
+
+\subsection{Main results: bias falls, but entropy and utility fall with it}
+\label{sec:main-results}
+
+\input{tables/main_results}
+
+\Tabref{tab:main-results} summarizes the main final run. The strongest induction-head ablation lowers repeated-token bias delta from 0.0496 in the full model to 0.0211, a decrease of 57.5\%. Relative to the mean random-head control (0.0466), the intervention remains clearly lower. However, the same ablation also lowers normalized entropy from 0.860 to 0.819 and raises WikiText perplexity from 89.9 to 169.7. The random-head control also hurts utility, but much less severely, reaching a mean perplexity of 106.5.
+
+The copy task adds an important complication. Ablating \headpair \emph{increases} copy-task top-1 accuracy from 0.729 to 0.823 rather than lowering it. This means the top-scoring induction-like subset in the final run is not behaving like a clean copy-only circuit. The intervention changes behavior, but not in the simple direction implied by the original hypothesis.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.72\linewidth]{figures/copy_accuracy.png}
+    \caption{Copy-task accuracy across full, induction-ablation, and random-head conditions. The final run does not show a clean ``remove induction heads, reduce copying'' pattern: ablating \headpair increases copy-task accuracy above both the full model and the mean random-head control.}
+    \label{fig:copy-accuracy}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.92\linewidth]{figures/random_bias_entropy.png}
+    \caption{Random-choice leakage metrics across conditions. Induction-head ablation lowers repeated-token bias but also lowers entropy over the valid candidate set. Lower bias therefore does not translate into more diffuse output distributions.}
+    \label{fig:random-bias-entropy}
+\end{figure}
+
+\subsection{Prompt-level tests show a real effect, but not a clean mitigation}
+\label{sec:stat-tests}
+
+\input{tables/statistical_tests}
+
+\Tabref{tab:stat-tests} reports paired prompt-level comparisons for the random-choice task. All four primary comparisons are significant after Benjamini-Hochberg correction. Relative to the full model, induction-head ablation lowers repeated-token bias by 0.0285 (95\% CI [$-0.0400$, $-0.0172$], Wilcoxon $p=1.54\times10^{-7}$) but also lowers normalized entropy by 0.0417 (95\% CI [$-0.0552$, $-0.0274$], Wilcoxon $p=2.11\times10^{-7}$). The comparison against the random-head control shows the same pattern: lower bias and lower entropy.
+
+These prompt-level results matter because they rule out the simplest null hypothesis that the final-run reduction in repeated-token bias is just noise. At the same time, they also rule out the strongest positive interpretation. The intervention does not make the model more uniformly random over the valid choices. It sharpens the distribution in a different way.
+
+\subsection{Sensitivity runs flip the causal story}
+\label{sec:sensitivity}
+
+\input{tables/sensitivity_runs}
+
+\Tabref{tab:sensitivity} is the most important result in the paper. In the smaller top-2 sensitivity run, ablating \texttt{L5H5,L6H9} drops copy accuracy from 0.542 to 0.250 but \emph{increases} repeated-token bias from 0.0371 to 0.0804. Adding \texttt{L5H1} in the top-3 run still leaves bias above the full model at 0.0638 and drives perplexity to 201.45. The final run with \headpair instead lowers bias to 0.0211 while also increasing copy accuracy.
+
+This sign flip means that ``induction-like heads'' are not interchangeable for the purpose of leakage mitigation. Different high-scoring subsets push the model in different directions. A head can look induction-like under the detector while still playing a heterogeneous role once we intervene on actual behavior.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.72\linewidth]{figures/wikitext_perplexity.png}
+    \caption{WikiText perplexity under the main intervention and random-head control. Hard ablation of the detected induction-like heads substantially harms language modeling utility, which makes the intervention unattractive as a leakage-specific fix.}
+    \label{fig:wikitext-ppl}
+\end{figure}

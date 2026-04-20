@@ -1,0 +1,55 @@
+\section{Methodology}
+\label{sec:methodology}
+
+\para{Research question.} We ask whether induction-like heads in \gptsmall materially increase unintended copying pressure on prompts that should instead produce diffuse or random outputs. The experiment is designed to connect head-level interventions to two behaviors in the same model: intended copying on a standard induction-style continuation task and unintended copying on a constrained random-choice task.
+
+\subsection{Model, toolkit, and compute}
+\label{sec:model-setup}
+
+We use \gptsmall with TransformerLens, which gives direct access to attention heads and head-level activation hooks. The local environment used PyTorch 2.11.0+cu130, Transformers 5.5.4, Datasets 4.8.4, SciPy 1.17.1, Pandas 3.0.2, Matplotlib 3.10.8, and Seaborn 0.13.2. The machine exposed four NVIDIA RTX A6000 GPUs through \texttt{nvidia-smi}, but PyTorch could not use CUDA because the installed driver-runtime pair was incompatible with the local torch build. All runs therefore executed on CPU. This constrained sample sizes but kept the intervention protocol identical across conditions.
+
+\subsection{Head identification}
+\label{sec:head-identification}
+
+We identify candidate induction heads using synthetic repeated-token prompts over six single-token color candidates: \texttt{red}, \texttt{blue}, \texttt{green}, \texttt{yellow}, \texttt{black}, and \texttt{white}. For each head, we compute TransformerLens's \texttt{detect\_head(..., "induction\_head")} score across 48 head-detection prompts in the final run. The top two heads are \headpair with scores 0.740 and 0.548, respectively. \Figref{fig:head-scores} shows the resulting score profile, which places the highest-scoring heads in the familiar mid-layer region reported by prior work \cite{olsson2022induction, crosbie2024induction}.
+
+\subsection{Tasks}
+\label{sec:tasks}
+
+\para{Copy task.} The copy task uses prompts of the form \texttt{A B C D | A B C} and evaluates whether the model predicts \texttt{D} next. This is a direct induction-style continuation pattern. We evaluate 96 prompts in the final run and measure top-1 accuracy and mean target logit.
+
+\para{Random-choice leakage task.} The random-choice task asks the model to choose one item from the same six-item candidate set with wording such as ``with no preference'' or ``at random.'' We compare a neutral prompt against a matched prompt that additionally includes repeated distractor context, such as \texttt{Previous answers: red, red, red}. For each of 96 prompts, we measure the probability assigned to the repeated distractor in both variants.
+
+Our primary leakage metric is the repeated-token bias delta
+\begin{equation}
+\Delta_{\text{bias}} = P(\text{repeated}\mid \text{biased prompt}) - P(\text{repeated}\mid \text{neutral prompt}).
+\end{equation}
+Higher values indicate stronger prompt-induced pressure toward the repeated distractor. We also compute normalized entropy over the six valid candidates,
+\begin{equation}
+H_{\text{norm}} = \frac{-\sum_{i=1}^{6} p_i \log p_i}{\log 6},
+\end{equation}
+where larger values indicate a more diffuse distribution, and KL divergence to the uniform distribution as a secondary diagnostic.
+
+\para{Utility check.} To measure whether the intervention preserves general language modeling quality, we compute negative log-likelihood and perplexity on 12 non-empty samples from \wikitext using up to 64 tokens per sample.
+
+\subsection{Interventions and baselines}
+\label{sec:interventions}
+
+We compare three conditions:
+\begin{itemize}
+    \item \textbf{Full model:} no intervention.
+    \item \textbf{Induction-head ablation:} zero the selected heads' \texttt{hook\_z} activations in TransformerLens.
+    \item \textbf{Random-head ablation control:} zero a matched number of randomly chosen heads and average across five random head sets.
+\end{itemize}
+
+The main final run uses top-2 induction-like heads, while sensitivity runs test two alternate high-scoring subsets: \texttt{L5H5,L6H9} and \texttt{L5H5,L6H9,L5H1}. The random-head control is important because hard head ablation can change model behavior for many generic reasons unrelated to induction-like circuitry.
+
+\subsection{Data resources}
+\label{sec:data}
+
+We use the local \texttt{datasets/synthetic\_copy\_task/} resource to validate the availability of a copy-style benchmark and to ground the experimental setup. We also use the local \texttt{datasets/wikitext\_103\_v1/} resource for the utility check. The final report records 900{,}000 synthetic-copy training rows and 1{,}801{,}350 WikiText training rows in the local environment.
+
+\subsection{Statistical analysis}
+\label{sec:statistics}
+
+The final run uses paired prompt-level comparisons for the random-choice task. Because Shapiro-Wilk tests on the paired differences rejected normality, we report Wilcoxon signed-rank tests, 95\% bootstrap confidence intervals for mean differences, and Benjamini-Hochberg adjusted $p$-values over the main comparison family. We report paired effect sizes as Cohen's $d$. This analysis focuses on two questions: whether induction-head ablation differs from the full model and whether it differs from the random-head control.

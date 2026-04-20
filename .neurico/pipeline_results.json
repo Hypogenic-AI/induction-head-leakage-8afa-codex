@@ -1,5 +1,5 @@
 {
-  "success": false,
+  "success": true,
   "stages": {
     "resource_finder": {
       "success": true,
@@ -13,12 +13,12 @@
       },
       "log_file": "/workspaces/induction-head-leakage-8afa-codex/logs/resource_finder_codex.log",
       "transcript_file": "/workspaces/induction-head-leakage-8afa-codex/logs/resource_finder_codex_transcript.jsonl",
-      "elapsed_time": 604.7013063430786
+      "elapsed_time": 285.77437233924866
     },
     "experiment_runner": {
-      "success": false,
-      "return_code": 1,
-      "elapsed_time": 3.332401752471924,
+      "success": true,
+      "return_code": 0,
+      "elapsed_time": 1979.4051690101624,
       "log_file": "/workspaces/induction-head-leakage-8afa-codex/logs/execution_codex.log",
       "transcript_file": "/workspaces/induction-head-leakage-8afa-codex/logs/execution_codex_transcript.jsonl"
     }

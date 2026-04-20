@@ -1,0 +1,20 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Large language models often repeat salient prompt content even when the task does not call for copying. That behavior matters in privacy settings, in robustness work on prompt contamination, and in applications that need controlled randomness rather than deterministic reuse of context. A mechanistic explanation would be valuable because it would turn an undesirable behavior into a concrete intervention target.
+
+Induction heads are a strong candidate for that role. Prior work argues that induction heads implement a copy-and-complete algorithm that supports in-context learning \cite{olsson2022induction, crosbie2024induction, ren2024semantic}. More recent work links the same head family to repetitive generation failures \cite{wang2025toxicity}. At the same time, work on memorization and extraction warns that leakage is often distributed and entangled with general language modeling ability rather than isolated in one small circuit \cite{lee2022deduplicating, ippolito2022falseprivacy, huang2024memorization}. These two views create a clear empirical question: do induction heads materially drive unwanted copying pressure on prompts that should instead yield diffuse or random outputs?
+
+This paper studies that question in \gptsmall. We first identify induction-like heads empirically using repeated-sequence prompts and a standard head detector. We then apply the same head-level intervention to two behaviors in the same model: intended copying on a controlled copy task and unintended copying on random-choice prompts with repeated distractor context. \Figref{fig:head-scores} shows that the detector recovers a small set of mid-layer heads that align with the canonical induction-head pattern. The resulting ablations let us test whether removing those heads cleanly lowers repeated-token bias, whether any change is specific relative to random-head controls, and whether the intervention preserves general utility.
+
+The answer is mixed. In the strongest final run, ablating \headpair lowers repeated-token bias by 0.0285 relative to the full model, with a 95\% bootstrap confidence interval of [$-0.0400$, $-0.0172$]. However, the same intervention lowers normalized entropy by 0.0417 and raises WikiText perplexity from 89.9 to 169.7. More importantly, the causal story changes sign in sensitivity runs: when \headlsix is included among the ablated induction-like heads, repeated-token bias increases instead of decreasing. That sign flip is the central empirical result of the paper. It argues against the simple claim that induction heads are a single large source of leakage.
+
+We make four contributions:
+\begin{itemize}
+    \item We identify a compact set of induction-like heads in \gptsmall and verify that they occupy the expected mid-layer region.
+    \item We conduct a head-level causal study that tests the same intervention on a controlled copy task, a random-choice leakage task, and a natural-text utility check.
+    \item We show that the strongest ablation lowers repeated-token bias but also lowers entropy and substantially harms language modeling utility.
+    \item We show that the bias effect reverses across high-scoring head subsets, which rules out a monolithic ``ablate induction heads, remove leakage'' explanation in this model.
+\end{itemize}
+
+The rest of the paper is organized as follows. \Secref{sec:related-work} positions the study relative to induction-head, memorization, and randomness-control work. \Secref{sec:methodology} describes the tasks, interventions, and evaluation metrics. \Secref{sec:results} presents the main ablation results and sensitivity analyses. \Secref{sec:discussion} discusses what these results imply for mechanistic mitigation and for future leakage studies.

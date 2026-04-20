@@ -1,0 +1,153 @@
+{
+  "config": {
+    "model_name": "gpt2-small",
+    "seed": 42,
+    "n_head_detection_prompts": 48,
+    "n_copy_prompts": 96,
+    "n_random_prompts": 96,
+    "n_wikitext_samples": 12,
+    "top_k_heads": 2,
+    "n_random_head_sets": 5,
+    "max_wikitext_tokens": 64,
+    "alpha": 0.05
+  },
+  "environment": {
+    "nvidia_smi": "name, memory.total [MiB], memory.free [MiB]\nNVIDIA RTX A6000, 49140 MiB, 33526 MiB\nNVIDIA RTX A6000, 49140 MiB, 48573 MiB\nNVIDIA RTX A6000, 49140 MiB, 48573 MiB\nNVIDIA RTX A6000, 49140 MiB, 48573 MiB",
+    "torch_cuda_available": false,
+    "torch_device_count": 4,
+    "torch_cuda_warning": "GPU visible to nvidia-smi but unavailable to PyTorch; likely CUDA/runtime mismatch.",
+    "python": "3.12.8 (main, Dec 19 2024, 14:33:20) [Clang 18.1.8 ]",
+    "torch": "2.11.0+cu130",
+    "synthetic_rows": 900000,
+    "wikitext_rows": 1801350
+  },
+  "dataset_summary": {
+    "synthetic_copy_task": {
+      "splits": {
+        "train": 900000,
+        "test": 100000
+      },
+      "mean_input_len_sample": 317.0546875,
+      "sample_text": "5 46 98 82 20 45 23 24 18 45 61 16 90 95 46 59 50 97 35 33 40 66 4 44 96 6 57 86 55 1 92 83 | 60 40 57 99 43 92 50 43 57 58 17 95 57 35 27 67 33 9 71 14 75 25 60 | 33 37 61 79 70 60 28 80 10 9 84 63 7"
+    },
+    "wikitext_103_v1": {
+      "splits": {
+        "test": 4358,
+        "train": 1801350,
+        "validation": 3760
+      },
+      "non_empty_test_rows": 2891,
+      "sample_text": " = Robert Boulter = \n"
+    }
+  },
+  "top_induction_heads": [
+    {
+      "layer": 5,
+      "head": 5,
+      "score": 0.7398448586463928
+    },
+    {
+      "layer": 5,
+      "head": 1,
+      "score": 0.5478076338768005
+    }
+  ],
+  "copy_task": {
+    "full_accuracy": 0.7291666666666666,
+    "induction_ablation_accuracy": 0.8229166666666666,
+    "random_ablation_accuracy_mean": 0.7229166666666667
+  },
+  "random_task": {
+    "full_bias_delta_mean": 0.04963984612065057,
+    "induction_bias_delta_mean": 0.021119059606765706,
+    "random_bias_delta_mean": 0.04664132812758908,
+    "full_entropy_mean": 0.8602485343199636,
+    "induction_entropy_mean": 0.8185876970117546,
+    "random_entropy_mean": 0.8474820470105332,
+    "comparisons": {
+      "bias_delta_induction_vs_full": {
+        "mean_a": 0.021119059606765706,
+        "mean_b": 0.04963984612065057,
+        "mean_diff": -0.02852078651388486,
+        "bootstrap_ci_diff": [
+          -0.039966508835883964,
+          -0.01724980015618106
+        ],
+        "cohens_d_paired": -0.5120650565835835,
+        "test": "wilcoxon",
+        "statistic": 892.0,
+        "p_value": 1.5410150243241565e-07,
+        "normality_p": 5.213046158854628e-07,
+        "bh_adjusted_p": 4.225773508460987e-07
+      },
+      "bias_delta_induction_vs_random": {
+        "mean_a": 0.021119059606765706,
+        "mean_b": 0.04664132812758908,
+        "mean_diff": -0.02552226852082337,
+        "bootstrap_ci_diff": [
+          -0.036967099859806084,
+          -0.014536893044035732
+        ],
+        "cohens_d_paired": -0.45730273201574084,
+        "test": "wilcoxon",
+        "statistic": 978.0,
+        "p_value": 8.084371193818327e-07,
+        "normality_p": 1.1046956894972544e-07,
+        "bh_adjusted_p": 1.077916159175777e-06
+      },
+      "entropy_induction_vs_full": {
+        "mean_a": 0.8185876970117546,
+        "mean_b": 0.8602485343199636,
+        "mean_diff": -0.04166083730820905,
+        "bootstrap_ci_diff": [
+          -0.055232585305186266,
+          -0.027436959249850706
+        ],
+        "cohens_d_paired": -0.5946074293346724,
+        "test": "wilcoxon",
+        "statistic": 908.0,
+        "p_value": 2.1128867542304935e-07,
+        "normality_p": 4.018782577076165e-05,
+        "bh_adjusted_p": 4.225773508460987e-07
+      },
+      "entropy_induction_vs_random": {
+        "mean_a": 0.8185876970117546,
+        "mean_b": 0.8474820470105332,
+        "mean_diff": -0.028894349998778657,
+        "bootstrap_ci_diff": [
+          -0.04295861947974849,
+          -0.01421344093852846
+        ],
+        "cohens_d_paired": -0.39689351982661203,
+        "test": "wilcoxon",
+        "statistic": 1167.0,
+        "p_value": 2.2089102355181708e-05,
+        "normality_p": 8.670832890492494e-06,
+        "bh_adjusted_p": 2.2089102355181708e-05
+      }
+    }
+  },
+  "wikitext_utility": {
+    "full": {
+      "mean_nll": 4.446782231330872,
+      "mean_perplexity": 89.8960548501309
+    },
+    "induction_ablation": {
+      "mean_nll": 5.03567651907603,
+      "mean_perplexity": 169.74076854474507
+    },
+    "random_ablation_control": {
+      "mean_nll": 4.601686418056488,
+      "mean_perplexity": 106.5120485621478
+    }
+  },
+  "runtime_seconds": 424.38933753967285,
+  "candidates": [
+    "red",
+    "blue",
+    "green",
+    "yellow",
+    "black",
+    "white"
+  ]
+}

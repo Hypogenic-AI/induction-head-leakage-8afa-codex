@@ -2,7 +2,7 @@
 
 ## Summary
 
-This catalog covers the papers, datasets, and code gathered for studying whether induction heads are a major source of leakage or pathological copying in language models.
+This catalog covers the papers, datasets, and code gathered for studying whether induction heads are a major source of leakage or pathological copying in language models. During validation on 2026-04-20, all 10 PDFs opened successfully with `pypdf`, both saved Hugging Face datasets loaded from disk, the raw retrieval benchmark asset was present locally, and all 5 repositories were confirmed as valid git clones.
 
 ## Papers
 
@@ -53,7 +53,7 @@ See `code/README.md` for key files.
 
 ### Search Strategy
 
-Manual arXiv, Hugging Face, and GitHub search was used. The local `paper-finder` helper did not return usable results because the expected local service endpoint was unavailable, so paper selection was done by query expansion around three themes: induction heads, leakage/memorization, and random/diffuse generation.
+Manual arXiv, Hugging Face, and GitHub search was used. The local `paper-finder` helper timed out at `localhost:8000`, so paper selection was done by query expansion around three themes: induction heads, leakage/memorization, and random/diffuse generation.
 
 ### Selection Criteria
 
@@ -64,7 +64,7 @@ Manual arXiv, Hugging Face, and GitHub search was used. The local `paper-finder`
 
 ### Challenges Encountered
 
-- `uv add` initially failed because the workspace had no importable package; a minimal `research_workspace` package fixed isolated dependency management.
+- The pre-existing workspace `.venv` was inconsistent at the start of this run; it was replaced with a fresh local `uv` environment and the required packages were reinstalled successfully.
 - arXiv paper `2505.13514` has a withdrawn current version with no PDF; the saved PDF comes from `v1`.
 - `dwzhu/needle_in_a_haystack_retrieval` is easiest to use as raw JSON rather than through the current `datasets` loader.
 
@@ -73,6 +73,7 @@ Manual arXiv, Hugging Face, and GitHub search was used. The local `paper-finder`
 - No single paper directly proves induction heads are a large source of privacy leakage.
 - Repetition-curse evidence was used as the closest mechanism-level support.
 - Leakage evaluation resources were added separately through extraction papers and code repos.
+- For deeper methodology verification, chunked PDF rereads were prepared under `papers/pages_2209/`, `papers/pages_2407/`, `papers/pages_2505/`, and `papers/pages_2404/`.
 
 ## Recommendations for Experiment Design
 

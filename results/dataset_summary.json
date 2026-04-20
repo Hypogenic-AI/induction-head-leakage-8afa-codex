@@ -1,0 +1,19 @@
+{
+  "synthetic_copy_task": {
+    "splits": {
+      "train": 900000,
+      "test": 100000
+    },
+    "mean_input_len_sample": 317.0546875,
+    "sample_text": "5 46 98 82 20 45 23 24 18 45 61 16 90 95 46 59 50 97 35 33 40 66 4 44 96 6 57 86 55 1 92 83 | 60 40 57 99 43 92 50 43 57 58 17 95 57 35 27 67 33 9 71 14 75 25 60 | 33 37 61 79 70 60 28 80 10 9 84 63 7"
+  },
+  "wikitext_103_v1": {
+    "splits": {
+      "test": 4358,
+      "train": 1801350,
+      "validation": 3760
+    },
+    "non_empty_test_rows": 2891,
+    "sample_text": " = Robert Boulter = \n"
+  }
+}

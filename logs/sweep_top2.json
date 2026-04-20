@@ -1,0 +1,154 @@
+Loaded pretrained model gpt2-small into HookedTransformer
+{
+  "config": {
+    "model_name": "gpt2-small",
+    "seed": 42,
+    "n_head_detection_prompts": 12,
+    "n_copy_prompts": 24,
+    "n_random_prompts": 24,
+    "n_wikitext_samples": 4,
+    "top_k_heads": 2,
+    "n_random_head_sets": 5,
+    "max_wikitext_tokens": 64,
+    "alpha": 0.05
+  },
+  "environment": {
+    "nvidia_smi": "name, memory.total [MiB], memory.free [MiB]\nNVIDIA RTX A6000, 49140 MiB, 33526 MiB\nNVIDIA RTX A6000, 49140 MiB, 48573 MiB\nNVIDIA RTX A6000, 49140 MiB, 48573 MiB\nNVIDIA RTX A6000, 49140 MiB, 48573 MiB",
+    "torch_cuda_available": false,
+    "torch_device_count": 4,
+    "torch_cuda_warning": "GPU visible to nvidia-smi but unavailable to PyTorch; likely CUDA/runtime mismatch.",
+    "python": "3.12.8 (main, Dec 19 2024, 14:33:20) [Clang 18.1.8 ]",
+    "torch": "2.11.0+cu130",
+    "synthetic_rows": 900000,
+    "wikitext_rows": 1801350
+  },
+  "dataset_summary": {
+    "synthetic_copy_task": {
+      "splits": {
+        "train": 900000,
+        "test": 100000
+      },
+      "mean_input_len_sample": 317.0546875,
+      "sample_text": "5 46 98 82 20 45 23 24 18 45 61 16 90 95 46 59 50 97 35 33 40 66 4 44 96 6 57 86 55 1 92 83 | 60 40 57 99 43 92 50 43 57 58 17 95 57 35 27 67 33 9 71 14 75 25 60 | 33 37 61 79 70 60 28 80 10 9 84 63 7"
+    },
+    "wikitext_103_v1": {
+      "splits": {
+        "test": 4358,
+        "train": 1801350,
+        "validation": 3760
+      },
+      "non_empty_test_rows": 2891,
+      "sample_text": " = Robert Boulter = \n"
+    }
+  },
+  "top_induction_heads": [
+    {
+      "layer": 5,
+      "head": 5,
+      "score": 0.7252816557884216
+    },
+    {
+      "layer": 6,
+      "head": 9,
+      "score": 0.5568898916244507
+    }
+  ],
+  "copy_task": {
+    "full_accuracy": 0.5416666666666666,
+    "induction_ablation_accuracy": 0.25,
+    "random_ablation_accuracy_mean": 0.5833333333333333
+  },
+  "random_task": {
+    "full_bias_delta_mean": 0.03710696892812848,
+    "induction_bias_delta_mean": 0.08042965037748218,
+    "random_bias_delta_mean": 0.029509070205191768,
+    "full_entropy_mean": 0.8700681535983484,
+    "induction_entropy_mean": 0.8719961946827889,
+    "random_entropy_mean": 0.8675808957711567,
+    "comparisons": {
+      "bias_delta_induction_vs_full": {
+        "mean_a": 0.08042965037748218,
+        "mean_b": 0.03710696892812848,
+        "mean_diff": 0.043322681449353695,
+        "bootstrap_ci_diff": [
+          0.03079678354940067,
+          0.05653830141915629
+        ],
+        "cohens_d_paired": 1.26059300329982,
+        "test": "paired_t",
+        "statistic": 6.1756192628143,
+        "p_value": 2.6677787506722946e-06,
+        "normality_p": 0.3449405509398823,
+        "bh_adjusted_p": 5.335557501344589e-06
+      },
+      "bias_delta_induction_vs_random": {
+        "mean_a": 0.08042965037748218,
+        "mean_b": 0.029509070205191768,
+        "mean_diff": 0.0509205801722904,
+        "bootstrap_ci_diff": [
+          0.03690945656038821,
+          0.06617468152039994
+        ],
+        "cohens_d_paired": 1.311564658911496,
+        "test": "paired_t",
+        "statistic": 6.425328358001256,
+        "p_value": 1.4788013186619262e-06,
+        "normality_p": 0.12710832468101307,
+        "bh_adjusted_p": 5.335557501344589e-06
+      },
+      "entropy_induction_vs_full": {
+        "mean_a": 0.8719961946827889,
+        "mean_b": 0.8700681535983484,
+        "mean_diff": 0.001928041084440497,
+        "bootstrap_ci_diff": [
+          -0.012575741256631322,
+          0.01703437306489658
+        ],
+        "cohens_d_paired": 0.049650075479888506,
+        "test": "paired_t",
+        "statistic": 0.24323470123279495,
+        "p_value": 0.8099798368475859,
+        "normality_p": 0.21226729303921293,
+        "bh_adjusted_p": 0.8099798368475859
+      },
+      "entropy_induction_vs_random": {
+        "mean_a": 0.8719961946827889,
+        "mean_b": 0.8675808957711567,
+        "mean_diff": 0.004415298911632129,
+        "bootstrap_ci_diff": [
+          -0.009414375314482335,
+          0.018898430116921185
+        ],
+        "cohens_d_paired": 0.12096904327593849,
+        "test": "paired_t",
+        "statistic": 0.5926248613974114,
+        "p_value": 0.5592143781752307,
+        "normality_p": 0.09334658761396303,
+        "bh_adjusted_p": 0.7456191709003076
+      }
+    }
+  },
+  "wikitext_utility": {
+    "full": {
+      "mean_nll": 4.266215026378632,
+      "mean_perplexity": 84.46924096045349
+    },
+    "induction_ablation": {
+      "mean_nll": 4.281741261482239,
+      "mean_perplexity": 86.83049938065699
+    },
+    "random_ablation_control": {
+      "mean_nll": 4.343280494213104,
+      "mean_perplexity": 89.58227206598663
+    }
+  },
+  "runtime_seconds": 125.46458578109741,
+  "candidates": [
+    "red",
+    "blue",
+    "green",
+    "yellow",
+    "black",
+    "white"
+  ]
+}
