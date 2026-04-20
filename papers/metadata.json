@@ -1,0 +1,253 @@
+[
+  {
+    "id": "2107.06499",
+    "title": "Deduplicating Training Data Makes Language Models Better",
+    "authors": [
+      "Katherine Lee",
+      "Daphne Ippolito",
+      "Andrew Nystrom",
+      "Chiyuan Zhang",
+      "Douglas Eck",
+      "Chris Callison-Burch",
+      "Nicholas Carlini"
+    ],
+    "year": 2021,
+    "published": "2021-07-14T06:06:52+00:00",
+    "updated": "2022-03-24T19:29:45+00:00",
+    "summary": "We find that existing language modeling datasets contain many near-duplicate examples and long repetitive substrings. As a result, over 1% of the unprompted output of language models trained on these datasets is copied verbatim from the training data. We develop two tools that allow us to deduplicate training datasets -- for example removing from C4 a single 61 word English sentence that is repeated over 60,000 times. Deduplication allows us to train models that emit memorized text ten times less frequently and require fewer train steps to achieve the same or better accuracy. We can also reduce train-test overlap, which affects over 4% of the validation set of standard datasets, thus allowing for more accurate evaluation. We release code for reproducing our work and performing dataset deduplication at https://github.com/google-research/deduplicate-text-datasets.",
+    "pdf": "2107.06499_deduplicating_training_data_makes_lms_better.pdf",
+    "pdf_url": "/workspaces/induction-head-leakage-8afa-codex/papers/2107.06499_deduplicating_training_data_makes_lms_better.pdf",
+    "entry_id": "http://arxiv.org/abs/2107.06499v2",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.LG"
+    ]
+  },
+  {
+    "id": "2209.11895",
+    "title": "In-context Learning and Induction Heads",
+    "authors": [
+      "Catherine Olsson",
+      "Nelson Elhage",
+      "Neel Nanda",
+      "Nicholas Joseph",
+      "Nova DasSarma",
+      "Tom Henighan",
+      "Ben Mann",
+      "Amanda Askell",
+      "Yuntao Bai",
+      "Anna Chen",
+      "Tom Conerly",
+      "Dawn Drain",
+      "Deep Ganguli",
+      "Zac Hatfield-Dodds",
+      "Danny Hernandez",
+      "Scott Johnston",
+      "Andy Jones",
+      "Jackson Kernion",
+      "Liane Lovitt",
+      "Kamal Ndousse",
+      "Dario Amodei",
+      "Tom Brown",
+      "Jack Clark",
+      "Jared Kaplan",
+      "Sam McCandlish",
+      "Chris Olah"
+    ],
+    "year": 2022,
+    "published": "2022-09-24T00:43:19+00:00",
+    "updated": "2022-09-24T00:43:19+00:00",
+    "summary": "\"Induction heads\" are attention heads that implement a simple algorithm to complete token sequences like [A][B] ... [A] -> [B]. In this work, we present preliminary and indirect evidence for a hypothesis that induction heads might constitute the mechanism for the majority of all \"in-context learning\" in large transformer models (i.e. decreasing loss at increasing token indices). We find that induction heads develop at precisely the same point as a sudden sharp increase in in-context learning ability, visible as a bump in the training loss. We present six complementary lines of evidence, arguing that induction heads may be the mechanistic source of general in-context learning in transformer models of any size. For small attention-only models, we present strong, causal evidence; for larger models with MLPs, we present correlational evidence.",
+    "pdf": "2209.11895_in_context_learning_and_induction_heads.pdf",
+    "pdf_url": "/workspaces/induction-head-leakage-8afa-codex/papers/2209.11895_in_context_learning_and_induction_heads.pdf",
+    "entry_id": "http://arxiv.org/abs/2209.11895v1",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG"
+    ]
+  },
+  {
+    "id": "2210.17546",
+    "title": "Preventing Verbatim Memorization in Language Models Gives a False Sense of Privacy",
+    "authors": [
+      "Daphne Ippolito",
+      "Florian Tram\u00e8r",
+      "Milad Nasr",
+      "Chiyuan Zhang",
+      "Matthew Jagielski",
+      "Katherine Lee",
+      "Christopher A. Choquette-Choo",
+      "Nicholas Carlini"
+    ],
+    "year": 2022,
+    "published": "2022-10-31T17:57:55+00:00",
+    "updated": "2023-09-11T16:58:48+00:00",
+    "summary": "Studying data memorization in neural language models helps us understand the risks (e.g., to privacy or copyright) associated with models regurgitating training data and aids in the development of countermeasures. Many prior works -- and some recently deployed defenses -- focus on \"verbatim memorization\", defined as a model generation that exactly matches a substring from the training set. We argue that verbatim memorization definitions are too restrictive and fail to capture more subtle forms of memorization. Specifically, we design and implement an efficient defense that perfectly prevents all verbatim memorization. And yet, we demonstrate that this \"perfect\" filter does not prevent the leakage of training data. Indeed, it is easily circumvented by plausible and minimally modified \"style-transfer\" prompts -- and in some cases even the non-modified original prompts -- to extract memorized information. We conclude by discussing potential alternative definitions and why defining memorization is a difficult yet crucial open question for neural language models.",
+    "pdf": "2210.17546_preventing_verbatim_memorization_false_privacy.pdf",
+    "pdf_url": "/workspaces/induction-head-leakage-8afa-codex/papers/2210.17546_preventing_verbatim_memorization_false_privacy.pdf",
+    "entry_id": "http://arxiv.org/abs/2210.17546v3",
+    "primary_category": "cs.LG",
+    "categories": [
+      "cs.LG",
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2302.04460",
+    "title": "Bag of Tricks for Training Data Extraction from Language Models",
+    "authors": [
+      "Weichen Yu",
+      "Tianyu Pang",
+      "Qian Liu",
+      "Chao Du",
+      "Bingyi Kang",
+      "Yan Huang",
+      "Min Lin",
+      "Shuicheng Yan"
+    ],
+    "year": 2023,
+    "published": "2023-02-09T06:46:42+00:00",
+    "updated": "2023-06-01T10:14:55+00:00",
+    "summary": "With the advance of language models, privacy protection is receiving more attention. Training data extraction is therefore of great importance, as it can serve as a potential tool to assess privacy leakage. However, due to the difficulty of this task, most of the existing methods are proof-of-concept and still not effective enough. In this paper, we investigate and benchmark tricks for improving training data extraction using a publicly available dataset. Because most existing extraction methods use a pipeline of generating-then-ranking, i.e., generating text candidates as potential training data and then ranking them based on specific criteria, our research focuses on the tricks for both text generation (e.g., sampling strategy) and text ranking (e.g., token-level criteria). The experimental results show that several previously overlooked tricks can be crucial to the success of training data extraction. Based on the GPT-Neo 1.3B evaluation results, our proposed tricks outperform the baseline by a large margin in most cases, providing a much stronger baseline for future research. The code is available at https://github.com/weichen-yu/LM-Extraction.",
+    "pdf": "2302.04460_bag_of_tricks_training_data_extraction.pdf",
+    "pdf_url": "/workspaces/induction-head-leakage-8afa-codex/papers/2302.04460_bag_of_tricks_training_data_extraction.pdf",
+    "entry_id": "http://arxiv.org/abs/2302.04460v2",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.AI",
+      "cs.CR",
+      "cs.LG"
+    ]
+  },
+  {
+    "id": "2305.16157",
+    "title": "Training Data Extraction From Pre-trained Language Models: A Survey",
+    "authors": [
+      "Shotaro Ishihara"
+    ],
+    "year": 2023,
+    "published": "2023-05-25T15:23:29+00:00",
+    "updated": "2023-05-25T15:23:29+00:00",
+    "summary": "As the deployment of pre-trained language models (PLMs) expands, pressing security concerns have arisen regarding the potential for malicious extraction of training data, posing a threat to data privacy. This study is the first to provide a comprehensive survey of training data extraction from PLMs. Our review covers more than 100 key papers in fields such as natural language processing and security. First, preliminary knowledge is recapped and a taxonomy of various definitions of memorization is presented. The approaches for attack and defense are then systemized. Furthermore, the empirical findings of several quantitative studies are highlighted. Finally, future research directions based on this review are suggested.",
+    "pdf": "2305.16157_training_data_extraction_survey.pdf",
+    "pdf_url": "/workspaces/induction-head-leakage-8afa-codex/papers/2305.16157_training_data_extraction_survey.pdf",
+    "entry_id": "http://arxiv.org/abs/2305.16157v1",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2402.13055",
+    "title": "Identifying Semantic Induction Heads to Understand In-Context Learning",
+    "authors": [
+      "Jie Ren",
+      "Qipeng Guo",
+      "Hang Yan",
+      "Dongrui Liu",
+      "Quanshi Zhang",
+      "Xipeng Qiu",
+      "Dahua Lin"
+    ],
+    "year": 2024,
+    "published": "2024-02-20T14:43:39+00:00",
+    "updated": "2024-07-25T08:07:39+00:00",
+    "summary": "Although large language models (LLMs) have demonstrated remarkable performance, the lack of transparency in their inference logic raises concerns about their trustworthiness. To gain a better understanding of LLMs, we conduct a detailed analysis of the operations of attention heads and aim to better understand the in-context learning of LLMs. Specifically, we investigate whether attention heads encode two types of relationships between tokens present in natural languages: the syntactic dependency parsed from sentences and the relation within knowledge graphs. We find that certain attention heads exhibit a pattern where, when attending to head tokens, they recall tail tokens and increase the output logits of those tail tokens. More crucially, the formulation of such semantic induction heads has a close correlation with the emergence of the in-context learning ability of language models. The study of semantic attention heads advances our understanding of the intricate operations of attention heads in transformers, and further provides new insights into the in-context learning of LLMs.",
+    "pdf": "2402.13055_identifying_semantic_induction_heads.pdf",
+    "pdf_url": "/workspaces/induction-head-leakage-8afa-codex/papers/2402.13055_identifying_semantic_induction_heads.pdf",
+    "entry_id": "http://arxiv.org/abs/2402.13055v2",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.AI"
+    ]
+  },
+  {
+    "id": "2404.10859",
+    "title": "Forcing Diffuse Distributions out of Language Models",
+    "authors": [
+      "Yiming Zhang",
+      "Avi Schwarzschild",
+      "Nicholas Carlini",
+      "Zico Kolter",
+      "Daphne Ippolito"
+    ],
+    "year": 2024,
+    "published": "2024-04-16T19:17:23+00:00",
+    "updated": "2024-08-07T21:57:20+00:00",
+    "summary": "Despite being trained specifically to follow user instructions, today's instructiontuned language models perform poorly when instructed to produce random outputs. For example, when prompted to pick a number uniformly between one and ten Llama-2-13B-chat disproportionately favors the number five, and when tasked with picking a first name at random, Mistral-7B-Instruct chooses Avery 40 times more often than we would expect based on the U.S. population. When these language models are used for real-world tasks where diversity of outputs is crucial, such as language model assisted dataset construction, their inability to produce diffuse distributions over valid choices is a major hurdle. In this work, we propose a fine-tuning method that encourages language models to output distributions that are diffuse over valid outcomes. The methods we introduce generalize across a variety of tasks and distributions and make large language models practical for synthetic dataset generation with little human intervention.",
+    "pdf": "2404.10859_forcing_diffuse_distributions.pdf",
+    "pdf_url": "/workspaces/induction-head-leakage-8afa-codex/papers/2404.10859_forcing_diffuse_distributions.pdf",
+    "entry_id": "http://arxiv.org/abs/2404.10859v2",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.LG"
+    ]
+  },
+  {
+    "id": "2407.07011",
+    "title": "Induction Heads as an Essential Mechanism for Pattern Matching in In-context Learning",
+    "authors": [
+      "Joy Crosbie",
+      "Ekaterina Shutova"
+    ],
+    "year": 2024,
+    "published": "2024-07-09T16:29:21+00:00",
+    "updated": "2025-04-02T09:40:08+00:00",
+    "summary": "Large language models (LLMs) have shown a remarkable ability to learn and perform complex tasks through in-context learning (ICL). However, a comprehensive understanding of its internal mechanisms is still lacking. This paper explores the role of induction heads in a few-shot ICL setting. We analyse two state-of-the-art models, Llama-3-8B and InternLM2-20B on abstract pattern recognition and NLP tasks. Our results show that even a minimal ablation of induction heads leads to ICL performance decreases of up to ~32% for abstract pattern recognition tasks, bringing the performance close to random. For NLP tasks, this ablation substantially decreases the model's ability to benefit from examples, bringing few-shot ICL performance close to that of zero-shot prompts. We further use attention knockout to disable specific induction patterns, and present fine-grained evidence for the role that the induction mechanism plays in ICL.",
+    "pdf": "2407.07011_induction_heads_pattern_matching_icl.pdf",
+    "pdf_url": "/workspaces/induction-head-leakage-8afa-codex/papers/2407.07011_induction_heads_pattern_matching_icl.pdf",
+    "entry_id": "http://arxiv.org/abs/2407.07011v3",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2407.17817",
+    "title": "Demystifying Verbatim Memorization in Large Language Models",
+    "authors": [
+      "Jing Huang",
+      "Diyi Yang",
+      "Christopher Potts"
+    ],
+    "year": 2024,
+    "published": "2024-07-25T07:10:31+00:00",
+    "updated": "2024-07-25T07:10:31+00:00",
+    "summary": "Large Language Models (LLMs) frequently memorize long sequences verbatim, often with serious legal and privacy implications. Much prior work has studied such verbatim memorization using observational data. To complement such work, we develop a framework to study verbatim memorization in a controlled setting by continuing pre-training from Pythia checkpoints with injected sequences. We find that (1) non-trivial amounts of repetition are necessary for verbatim memorization to happen; (2) later (and presumably better) checkpoints are more likely to verbatim memorize sequences, even for out-of-distribution sequences; (3) the generation of memorized sequences is triggered by distributed model states that encode high-level features and makes important use of general language modeling capabilities. Guided by these insights, we develop stress tests to evaluate unlearning methods and find they often fail to remove the verbatim memorized information, while also degrading the LM. Overall, these findings challenge the hypothesis that verbatim memorization stems from specific model weights or mechanisms. Rather, verbatim memorization is intertwined with the LM's general capabilities and thus will be very difficult to isolate and suppress without degrading model quality.",
+    "pdf": "2407.17817_demystifying_verbatim_memorization.pdf",
+    "pdf_url": "/workspaces/induction-head-leakage-8afa-codex/papers/2407.17817_demystifying_verbatim_memorization.pdf",
+    "entry_id": "http://arxiv.org/abs/2407.17817v1",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.LG"
+    ]
+  },
+  {
+    "id": "2505.13514",
+    "title": "Induction Head Toxicity Mechanistically Explains Repetition Curse in Large Language Models",
+    "authors": [
+      "Shuxun Wang",
+      "Qingyu Yin",
+      "Chak Tou Leong",
+      "Qiang Zhang",
+      "Linyi Yang"
+    ],
+    "year": 2025,
+    "published": "2025-05-17T03:09:33+00:00",
+    "updated": "2025-12-02T09:09:35+00:00",
+    "summary": "Repetition curse is a phenomenon where Large Language Models (LLMs) generate repetitive sequences of tokens or cyclic sequences. While the repetition curse has been widely observed, its underlying mechanisms remain poorly understood. In this work, we investigate the role of induction heads--a specific type of attention head known for their ability to perform in-context learning--in driving this repetitive behavior. Specifically, we focus on the \"toxicity\" of induction heads, which we define as their tendency to dominate the model's output logits during repetition, effectively excluding other attention heads from contributing to the generation process. Our findings have important implications for the design and training of LLMs. By identifying induction heads as a key driver of the repetition curse, we provide a mechanistic explanation for this phenomenon and suggest potential avenues for mitigation. We also propose a technique with attention head regularization that could be employed to reduce the dominance of induction heads during generation, thereby promoting more diverse and coherent outputs.",
+    "pdf": "2505.13514_induction_head_toxicity_repetition_curse.pdf",
+    "pdf_url": "https://arxiv.org/pdf/2505.13514v1.pdf",
+    "entry_id": "http://arxiv.org/abs/2505.13514v2",
+    "primary_category": "cs.CL",
+    "categories": [
+      "cs.CL",
+      "cs.AI"
+    ]
+  }
+]

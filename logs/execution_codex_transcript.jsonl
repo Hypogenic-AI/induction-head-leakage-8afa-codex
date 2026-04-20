@@ -1,0 +1,6 @@
+WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+Reading prompt from stdin...
+{"type":"thread.started","thread_id":"019da852-b62a-70e1-a095-bad30f0b67fc"}
+{"type":"turn.started"}
+{"type":"error","message":"You've hit your usage limit. To get more access now, send a request to your admin or try again at 1:57 AM."}
+{"type":"turn.failed","error":{"message":"You've hit your usage limit. To get more access now, send a request to your admin or try again at 1:57 AM."}}

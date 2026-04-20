@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-04-20T00:28:01.173829",
+  "stages": {
+    "resource_finder": {
+      "status": "completed",
+      "started_at": "2026-04-20T00:28:01.174207",
+      "completed_at": "2026-04-20T00:38:05.876685",
+      "success": true,
+      "outputs": {
+        "literature_review": "/workspaces/induction-head-leakage-8afa-codex/literature_review.md",
+        "resources_catalog": "/workspaces/induction-head-leakage-8afa-codex/resources.md",
+        "papers_dir": "/workspaces/induction-head-leakage-8afa-codex/papers",
+        "datasets_dir": "/workspaces/induction-head-leakage-8afa-codex/datasets",
+        "code_dir": "/workspaces/induction-head-leakage-8afa-codex/code"
+      }
+    },
+    "experiment_runner": {
+      "status": "failed",
+      "started_at": "2026-04-20T00:38:05.877038",
+      "completed_at": "2026-04-20T00:38:09.221989",
+      "success": false,
+      "outputs": {
+        "success": false,
+        "return_code": 1,
+        "elapsed_time": 3.332401752471924,
+        "log_file": "/workspaces/induction-head-leakage-8afa-codex/logs/execution_codex.log",
+        "transcript_file": "/workspaces/induction-head-leakage-8afa-codex/logs/execution_codex_transcript.jsonl"
+      }
+    }
+  },
+  "current_stage": null,
+  "completed": false
+}
