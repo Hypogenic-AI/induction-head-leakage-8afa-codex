@@ -1,0 +1,26 @@
+idea:
+  title: Are induction heads a large source of leakage?
+  domain: nlp
+  hypothesis: 'Induction heads in language models may cause unintended leakage by
+    copying patterns from text even when the model should not be copying, potentially
+    contributing to the model''s struggle to produce random outputs.
+
+    '
+  background:
+    description: 'Induction heads allow models to copy data according to patterns
+      that have been displayed in the text. They are active often even when the model
+      isn''t directly, as they are believed to be responsible for pattern-matching
+      behavior, e.g., ICL. But then the question is: do induction heads end-up leaking
+      whatever is patterned in the text even when the model shouldn''t be copying
+      something? Is this one of the reason models struggle to be random?
+
+      '
+  metadata:
+    author: Ari Holtzman
+    source: IdeaHub
+    source_url: https://hypogenic.ai/ideahub/idea/bZUARiC6O4K2APDVhZ3j
+    idea_id: are_induction_heads_a_large_so_20260420_002755_d59e7c62
+    created_at: '2026-04-20T00:27:55.368632'
+    status: submitted
+    github_repo_name: induction-head-leakage-8afa-codex
+    github_repo_url: https://github.com/Hypogenic-AI/induction-head-leakage-8afa-codex
